@@ -1,12 +1,11 @@
 <div align="center">
   <h2>
-    Este repositório se refere ao Micro Serviço ( API-pagamentos ) 
+    Este repositório se refere ao Micro Serviço ( API-Pagamentos ) 
     <br>
     <br>
     parte do <u>Projeto Academia - NT Forma</u> 💪
   </h2>
 </div>
-
 
 
 <div align="center">
@@ -67,6 +66,7 @@
     <img src="https://github.com/PFonsecaFV/PFonsecaFV/blob/main/src/icons/ic_postgre.svg" width="60" fill="none" />
     <img src="https://github.com/PFonsecaFV/PFonsecaFV/blob/main/src/icons/ic_postman.svg" width="60" fill="none" />
     <img src="https://github.com/PFonsecaFV/PFonsecaFV/blob/main/src/icons/ic_railway.svg" width="60" fill="none" />
+    <img src="https://github.com/PFonsecaFV/PFonsecaFV/blob/main/src/icons/ic_swagger.svg" width="60" fill="none" />
     </a>
   </p>
 </div>
@@ -75,22 +75,34 @@
 
 A API faz parte de um sistema de academia com as seguintes funcionalidades:
 
-### Etapa 1:
-✅ Implementado api-pagamentos
+### Etapa 1: (Concluída)
+✅ ~~Implementado api-pagamentos~~
 
 ---
 
-### Etapa 2:
-✅ Conexão com o banco de dados PostgreSQL na CloudService Railway
+### Etapa 2: (Concluída)
+✅ ~~Conexão com o banco de dados PostgreSQL na CloudService Railway~~
 
-✅ Implementado tabela de pagamentos basica (sem relacionamento com outras tabelas)
+✅ ~~Implementado tabela `pagamentos` básica (sem relacionamento com outras tabelas)~~
+
+✅ ~~Implementado `environments`~~
+
+✅ ~~Implementado `dados de conexão com banco de dados`~~
 
 
 ---
 
 ### Etapa 3:
-✅ A ser implementado...
+✅ Padronização de retorno da API
 
-✅ A ser implementado...
+✅ Atualizado `environments` com escopo global entre IDEs
 
-✅ A ser implementado...
+✅ Adicionar Regras de negócio
+
+✅ Configurado e implementado Doc Swagger
+
+✅ Para testar as requisições no Swagger entre no link abaixo:
+
+```html
+http://localhost:8080/swagger-ui/index.html#/
+```
