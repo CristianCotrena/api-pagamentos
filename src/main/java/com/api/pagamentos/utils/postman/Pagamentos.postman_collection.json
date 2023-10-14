@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "22a8108e-ed35-4483-932f-7873401cd288",
+		"name": "Pagamentos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29484782",
+		"_collection_link": "https://galactic-equinox-55183.postman.co/workspace/Academia-NT-Form~f52aa576-8570-4b0d-88ba-4006af2c3cbe/collection/29484782-22a8108e-ed35-4483-932f-7873401cd288?action=share&source=collection_link&creator=29484782"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Cadastro válido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFuncionario\":\"dc8db07d-6255-4014-9638-da76d1a95d96\",\r\n    \"statusPagamento\":\"PAGAR\",\r\n    \"descricao\":\"pendente\",\r\n    \"valor\":150.00,\r\n    \"data\":\"2023-12-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(inválido) valor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFuncionario\":\"1e10c1e4-9a6b-43e1-9f12-7136336e8653\",\r\n    \"statusPagamento\":\"PAGAR\",\r\n    \"descricao\":\"pago\",\r\n    \"valor\": \"\",\r\n    \"data\":\"2023-12-14T01:30:01.764+00:00\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(inválido) data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFuncionario\":\"2e10c1e5-9a6b-43e1-9f12-7136336e8657\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pago\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"2023-10-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(obrigatório) id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFuncionario\":\"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pago\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"2023-12-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(obrigatório) descricao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"idFuncionario\":\"2e10c1e5-9a6b-43e1-9f12-7136336e8657\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"2023-12-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(obrigatório) data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idFuncionario\":\"2e10c1e5-9a6b-43e1-9f12-7136336e8657\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

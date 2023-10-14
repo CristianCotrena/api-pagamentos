@@ -13,7 +13,7 @@ import java.util.UUID;
         private UUID id;
         @Column(unique = true)
         private UUID idCliente;
-        @Column(nullable = false, unique = true)
+        @Column(unique = true)
         private UUID idFuncionario;
         @Column(unique = true)
         private UUID idFornecedor;
