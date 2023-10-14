@@ -12,35 +12,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/v1/pagamentos")
+@Tag(
+        name = "API Pagamentos",
+        description = "Microserviço para API Pagamentos Forma NT - Academia"
+)
 public class PagamentosController {
-    @RestController
-    @RequestMapping("/v1/pagamentos")
-    @Tag(
-            name = "API Pagamentos",
-            description = "Microserviço para API Pagamentos Forma NT - Academia"
+    @Autowired
+    private PagamentosService pagamentosService;
+
+    @Operation(
+            summary = "Criar pagamentos",
+            description = "Cria um novo pagamento",
+            method = "POST"
     )
-    public class DadosBancariosController {
-        @Autowired
-        private PagamentosService pagamentosService;
+    @ApiResponse(
+            responseCode = "201",
+            description = "pagamento criado com sucesso")
+    @ApiResponse(
+            responseCode = "400",
+            description = "Erro de validação")
+    @ApiResponse(
+            responseCode = "500",
+            description = "Erro interno")
 
-        @Operation(
-                summary = "Criar pagamentos",
-                description = "Cria um novo pagamento",
-                method = "POST"
-        )
-        @ApiResponse(
-                responseCode = "201",
-                description = "pagamento criado com sucesso")
-        @ApiResponse(
-                responseCode = "400",
-                description = "Erro de validação")
-        @ApiResponse(
-                responseCode = "500",
-                description = "Erro interno")
-
-        @PostMapping("/cadastrar")
-        public BaseDto cadastrarPagamentos(@RequestBody PagamentosRequestDto pagamentosRequestDto) {
-            return pagamentosService.cadastrarPagamentos(pagamentosRequestDto);
-        }
+    @PostMapping("/cadastrar")
+    public BaseDto cadastrarPagamentos(@RequestBody PagamentosRequestDto pagamentosRequestDto) {
+        return pagamentosService.cadastrarPagamentos(pagamentosRequestDto);
     }
 }
+

@@ -11,7 +11,7 @@ import java.util.List;
 public class PagamentosValidation {
     public List<BaseErrorDto> validate(PagamentosRequestDto pagamentosRequestDto) {
         List<BaseErrorDto> erros = validateCamposRequeridos(pagamentosRequestDto);
-        return erros.size() > 0 ? erros : validateCamposInvalidos(pagamentosRequestDto, erros);
+        return !erros.isEmpty() ? erros : validateCamposInvalidos(pagamentosRequestDto, erros);
     }
 
     public List<BaseErrorDto> validateCamposRequeridos(PagamentosRequestDto pagamentosRequestDto) {
@@ -28,14 +28,14 @@ public class PagamentosValidation {
             erros.add(new BaseErrorDto("idFornecedor", "Os campos funcionário, fornecedor e cliente não podem aparecer simultaneamente."));
             erros.add(new BaseErrorDto("idCliente", "Os campos funcionário, fornecedor e cliente não podem aparecer simultaneamente."));
         }
+        if (pagamentosRequestDto.getStatusPagamento() == null) {
+            erros.add(new BaseErrorDto("statusPagamento", MensagemDeErro.EMPTY_FIELD));
+        }
         if (pagamentosRequestDto.getDescricao().isEmpty()) {
             erros.add(new BaseErrorDto("descricao", MensagemDeErro.EMPTY_FIELD));
         }
-        if (pagamentosRequestDto.getDescricao().isEmpty()) {
-            erros.add(new BaseErrorDto("valor", MensagemDeErro.EMPTY_FIELD));
-        }
         if (pagamentosRequestDto.getData() == null) {
-            erros.add(new BaseErrorDto("conta", MensagemDeErro.EMPTY_FIELD));
+            erros.add(new BaseErrorDto("data", MensagemDeErro.EMPTY_FIELD));
         }
         return erros;
     }
@@ -43,13 +43,12 @@ public class PagamentosValidation {
     //Todo: Campos inválidos
     public List<BaseErrorDto> validateCamposInvalidos(PagamentosRequestDto pagamentosRequestDto, List<BaseErrorDto> erros) {
 
-        if (pagamentosRequestDto.getData().isAfter(ZonedDateTime.now())) {
+        if (pagamentosRequestDto.getData().isBefore(ZonedDateTime.now())) {
             erros.add(new BaseErrorDto("data", MensagemDeErro.INVALID_FIELD));
         }
-        if (pagamentosRequestDto.getValor() <= 0) {
+        if (pagamentosRequestDto.getValor() ==  0) {
             erros.add(new BaseErrorDto("valor", MensagemDeErro.INVALID_FIELD));
         }
-
         return erros;
     }
 }
