@@ -12,10 +12,6 @@ import java.util.UUID;
 @Repository
 public interface PagamentosRepository extends JpaRepository<PagamentosModel, UUID> {
 
-    Optional<Boolean> existsByIdFuncionario(UUID idFuncionario);
-
-    Optional<Boolean> existsByIdFornecedor(UUID idFornecedor);
-
     Optional<Boolean> existsByStatusPagamento(Object statusPagamento);
 
     Optional<Boolean> existsByDescricao(String descricao);

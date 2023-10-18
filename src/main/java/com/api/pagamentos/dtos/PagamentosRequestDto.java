@@ -34,12 +34,15 @@ public class PagamentosRequestDto {
         this.status = status;
     }
 
+    public PagamentosRequestDto() {
+    }
+
     public UUID getIdFuncionario() {
         return idFuncionario;
     }
 
-    public void setIdFuncionario(UUID idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public void setIdFuncionario(UUID uuid) {
+        this.idFuncionario = uuid;
     }
 
     public UUID getIdFornecedor() {
@@ -97,4 +100,5 @@ public class PagamentosRequestDto {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
 }

@@ -10,13 +10,13 @@ public enum PagamentoEnum {
         this.statusEscolhido = statusEscolhido;
     }
 
-    public static PagamentoEnum cargoSelecionado(String statusEscolhido) {
+    public static PagamentoEnum statusEscolhido(String statusEscolhido) {
         PagamentoEnum[] var1 = values();
         int var2 = var1.length;
 
-        for (PagamentoEnum cargosEnum : var1) {
-            if (cargosEnum.getStatusEscolhido().equals(statusEscolhido)) {
-                return cargosEnum;
+        for (PagamentoEnum statusEnum : var1) {
+            if (statusEnum.getStatusEscolhido().equals(statusEscolhido)) {
+                return statusEnum;
             }
         }
 
