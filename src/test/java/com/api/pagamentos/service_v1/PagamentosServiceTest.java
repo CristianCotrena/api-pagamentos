@@ -2,6 +2,8 @@ package com.api.pagamentos.service_v1;
 
 import com.api.pagamentos.base.dto.BaseDto;
 import com.api.pagamentos.base.dto.BaseErrorDto;
+import com.api.pagamentos.builder.ResponseSucessBuilder;
+import com.api.pagamentos.constants.MensagemDeErro;
 import com.api.pagamentos.dtos.PagamentosRequestDto;
 import com.api.pagamentos.entity.model.PagamentoEnum;
 import com.api.pagamentos.entity.model.PagamentosModel;
@@ -14,15 +16,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static java.util.UUID.fromString;
 import static java.util.UUID.randomUUID;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -162,6 +167,53 @@ public class PagamentosServiceTest {
         var resultado = pagamentosService.cadastrarPagamentos(request);
 
         assertEquals(BAD_REQUEST.value(), resultado.getResultado().getStatus());
+    }
+    @Test
+    void buscarPagamentoSucesso(){
+        var response = PagamentosModelBuilder.build();
+        var modelOptional = Optional.of(response);
+        when(pagamentosRepository.findById(any(UUID.class))).thenReturn(modelOptional);
+        ResponseEntity<BaseDto> resultado = pagamentosService.buscarPagamento
+                (UUID.fromString("415e42c7-9567-4665-aebd-e19cb564b772"));
+        assertNotNull(resultado);
+        assertEquals(HttpStatus.OK,resultado.getStatusCode());
+    }
+    @Test
+    void buscarPagamentoSucessoFindById(){
+        var model = PagamentosModelBuilder.build();
+        var modelOptional = Optional.of(model);
+        when(pagamentosRepository.findById(any(UUID.class))).thenReturn(modelOptional);
+        PagamentosModel resultado = pagamentosRepository.findById
+                (UUID.fromString("415e42c7-9567-4665-aebd-e19cb564b772")).get();
+        assertNotNull(resultado);
+        assertEquals(PagamentosModel.class, resultado.getClass());
+        assertEquals(UUID.fromString("415e42c7-9567-4665-aebd-e19cb564b772"),resultado.getId());
+        assertEquals(UUID.fromString("5776b4fa-f29d-46b1-a4b7-caa0fb230ac5"),resultado.getIdFuncionario());
+        assertEquals(PagamentoEnum.valueOf("PAGAR"),resultado.getStatusPagamento());
+        assertEquals("Pagamento pendente",resultado.getDescricao());
+        assertEquals(150,resultado.getValor());
+        assertEquals(ZonedDateTime.parse("2025-10-09T17:21:17.189+00:00"),resultado.getData());
+        assertEquals(1,resultado.getStatus());
+    }
+    @Test
+    void erroBuscarPagamento(){
+        var response = PagamentosModelBuilder.build();
+        var modelOptional = Optional.of(response);
+        when(pagamentosRepository.findById(any(UUID.class))).thenReturn(Optional.empty());
+        ResponseEntity<BaseDto> resultado = pagamentosService.buscarPagamento
+                (UUID.fromString("9d9affac-4c18-4b40-9de5-846418072fc1"));
+        assertEquals(HttpStatus.NOT_FOUND,resultado.getStatusCode());
+        assertEquals(MensagemDeErro.NOT_FOUND,resultado.getBody().getResultado().getDescricao());
+    }
+    @Test
+    void erroBuscarPagamentoFindById(){
+        var response = PagamentosModelBuilder.build();
+        var modelOptional = Optional.of(response);
+        when(pagamentosRepository.findById(any(UUID.class))).thenReturn(Optional.empty());
+        Optional<PagamentosModel> resultado = pagamentosRepository.findById
+                (UUID.fromString("1ad576b0-71be-426a-916c-58ed1a74d0de"));
+        assertEquals(Optional.empty(),resultado);
+
     }
 }
 
