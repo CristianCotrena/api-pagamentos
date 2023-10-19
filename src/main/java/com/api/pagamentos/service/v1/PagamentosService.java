@@ -11,11 +11,14 @@ import com.api.pagamentos.repository.PagamentosRepository;
 import com.api.pagamentos.transforme.PagamentosTransforme;
 import com.api.pagamentos.validation.PagamentosValidation;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PagamentosService {
@@ -44,5 +47,13 @@ public class PagamentosService {
         var savedPagamentos = pagamentosRepository.save(pagamentos);
 
         return new ResponseSucessBuilder<PagamentosModel>(HttpStatus.CREATED, savedPagamentos, "Pagamento cadastrado com sucesso.").get().getBody();
+    }
+
+    public ResponseEntity buscarPagamento(UUID id){
+        Optional<PagamentosModel> encontrarPorId = pagamentosRepository.findById(id);
+        if (encontrarPorId.isEmpty()){
+            return new ResponseErrorBuilder(HttpStatus.NOT_FOUND,MensagemDeErro.NOT_FOUND).get();
+        }
+        return new ResponseSucessBuilder(HttpStatus.OK,encontrarPorId).get();
     }
 }
