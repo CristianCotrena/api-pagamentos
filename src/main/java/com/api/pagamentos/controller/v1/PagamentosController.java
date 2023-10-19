@@ -5,6 +5,7 @@ import com.api.pagamentos.dtos.PagamentosRequestDto;
 import com.api.pagamentos.service.v1.PagamentosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,12 @@ public class PagamentosController {
     public BaseDto cadastrarPagamentos(@RequestBody PagamentosRequestDto pagamentosRequestDto) {
         return pagamentosService.cadastrarPagamentos(pagamentosRequestDto);
     }
+    @Operation(summary = "Busca registro de um pagamento ", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Pagamento não encontrado"),
+            @ApiResponse(responseCode = "200", description = "Pagamento encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro interno"),
+    })
     @GetMapping("/{id}")
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);

@@ -106,3 +106,9 @@ A API faz parte de um sistema de academia com as seguintes funcionalidades:
 ```html
 http://localhost:8080/swagger-ui/index.html#/
 ```
+CRUD :
+
+-  Método `POST`
+-  Método `GET(BUSCAR)`
+
+---

@@ -168,6 +168,7 @@ public class PagamentosServiceTest {
 
         assertEquals(BAD_REQUEST.value(), resultado.getResultado().getStatus());
     }
+    @DisplayName("01 - Buscar pagamento")
     @Test
     void buscarPagamentoSucesso(){
         var response = PagamentosModelBuilder.build();
@@ -178,6 +179,7 @@ public class PagamentosServiceTest {
         assertNotNull(resultado);
         assertEquals(HttpStatus.OK,resultado.getStatusCode());
     }
+    @DisplayName("02 - Buscar pagamento(FindById)")
     @Test
     void buscarPagamentoSucessoFindById(){
         var model = PagamentosModelBuilder.build();
@@ -195,6 +197,7 @@ public class PagamentosServiceTest {
         assertEquals(ZonedDateTime.parse("2025-10-09T17:21:17.189+00:00"),resultado.getData());
         assertEquals(1,resultado.getStatus());
     }
+    @DisplayName("03 - Erro ao buscar pagamento")
     @Test
     void erroBuscarPagamento(){
         var response = PagamentosModelBuilder.build();
@@ -205,6 +208,7 @@ public class PagamentosServiceTest {
         assertEquals(HttpStatus.NOT_FOUND,resultado.getStatusCode());
         assertEquals(MensagemDeErro.NOT_FOUND,resultado.getBody().getResultado().getDescricao());
     }
+    @DisplayName("04 - Erro ao buscar pagamento(FindById")
     @Test
     void erroBuscarPagamentoFindById(){
         var response = PagamentosModelBuilder.build();
