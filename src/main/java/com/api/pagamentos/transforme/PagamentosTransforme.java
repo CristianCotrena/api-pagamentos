@@ -12,6 +12,7 @@ public class PagamentosTransforme {
         pagamentosModel.setStatusPagamento(dto.getStatusPagamento());
         pagamentosModel.setDescricao(dto.getDescricao());
         pagamentosModel.setData(dto.getData());
+        pagamentosModel.setValor(dto.getValor());
 
         if (dto.getStatus() != null) {
             pagamentosModel.setStatus(dto.getStatus());
