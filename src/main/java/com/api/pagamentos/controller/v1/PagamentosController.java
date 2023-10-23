@@ -52,5 +52,7 @@ public class PagamentosController {
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);
     }
+    @GetMapping("/listar"
+    public ResponseEntity<BaseDto>) listarPagamentos
 }
 
