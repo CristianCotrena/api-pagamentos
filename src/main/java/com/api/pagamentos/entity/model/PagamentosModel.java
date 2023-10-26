@@ -28,6 +28,9 @@ import java.util.UUID;
         @Column(nullable = false, columnDefinition = "int default 1")
         private int status;
 
+        public PagamentosModel(UUID idFuncionario, Object o, Object o1, PagamentoEnum pagamentoEnum, String pagamentoPendente, double v, Object o2) {
+        }
+
         public UUID getId() {
             return id;
         }

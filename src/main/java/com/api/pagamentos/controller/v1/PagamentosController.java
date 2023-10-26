@@ -1,6 +1,10 @@
 package com.api.pagamentos.controller.v1;
 
 import com.api.pagamentos.base.dto.BaseDto;
+import com.api.pagamentos.dtos.ListarPagamentosResponseDto;
+import com.api.pagamentos.entity.model.PagamentoEnum;
+import com.api.pagamentos.repository.PagamentosRepository;
+import com.api.pagamentos.service.v1.ListarPagamentosService;
 import com.api.pagamentos.dtos.PagamentosRequestDto;
 import com.api.pagamentos.service.v1.PagamentosService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,8 +25,15 @@ import java.util.UUID;
         description = "Microserviço para API Pagamentos Forma NT - Academia"
 )
 public class PagamentosController {
+    private final ListarPagamentosService listarPagamentosService;
+    private final PagamentosRepository pagamentoRepository;
     @Autowired
     private PagamentosService pagamentosService;
+    @Autowired
+    public PagamentosController(ListarPagamentosService listarPagamentosService, PagamentosRepository pagamentoRepository) {
+        this.listarPagamentosService = listarPagamentosService;
+        this.pagamentoRepository = pagamentoRepository;
+    }
 
     @Operation(
             summary = "Criar pagamentos",
@@ -38,6 +50,7 @@ public class PagamentosController {
             responseCode = "500",
             description = "Erro interno")
 
+
     @PostMapping("/cadastrar")
     public BaseDto cadastrarPagamentos(@RequestBody PagamentosRequestDto pagamentosRequestDto) {
         return pagamentosService.cadastrarPagamentos(pagamentosRequestDto);
@@ -52,7 +65,16 @@ public class PagamentosController {
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);
     }
-    @GetMapping("/listar"
-    public ResponseEntity<BaseDto>) listarPagamentos
-}
+
+    @GetMapping("/v1/pagamentos")
+    public ResponseEntity listarPagamentos(
+            @RequestParam(required = false) UUID idCliente,
+            @RequestParam(required = false) UUID idFuncionario,
+            @RequestParam(required = false) UUID idFornecedor,
+            @RequestParam(required = false) PagamentoEnum statusPagamento,
+            @RequestParam(required = false, defaultValue = "1") int page) {
+        ListarPagamentosService listarPagamentosService = new ListarPagamentosService(pagamentoRepository);
+        return listarPagamentosService.listarPagamentos(idCliente, idFuncionario, idFornecedor, statusPagamento, page);
+    }
+    }
 
