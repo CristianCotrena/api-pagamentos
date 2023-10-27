@@ -2,6 +2,7 @@ package com.api.pagamentos.service_v1;
 
 
 import com.api.pagamentos.base.dto.BaseDto;
+import com.api.pagamentos.dtos.ListarPagamentosRequestDto;
 import com.api.pagamentos.dtos.ListarPagamentosResponseDto;
 import com.api.pagamentos.entity.model.PagamentoEnum;
 import com.api.pagamentos.entity.model.PagamentosModel;
@@ -47,21 +48,27 @@ public class ListarPagamentosServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
         Page<PagamentosModel> clientePagina = new PageImpl<>(pagamento, pageable, pagamento.size());
         when(pagamentosRepository.findAll(any(Specification.class), any(Pageable.class))).thenReturn(clientePagina);
-        ResponseEntity<BaseDto> responseEntity = listarPagamentosService.listarPagamentos(null, null, null, null,0);
+        ListarPagamentosRequestDto request = new ListarPagamentosRequestDto(null,null,null,null,0);
+        ResponseEntity responseEntity = listarPagamentosService.listarPagamentos(request);
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
     }
 
-        @Test
-        public void testarListaPagamentosSucesso() {
-            UUID idFuncionario = UUID.fromString("5776b4fa-f29d-46b1-a4b7-caa0fb230ac5");
-            List<PagamentosModel> pagamentos = new ArrayList<>();
-            pagamentos.add(new PagamentosModel(idFuncionario, null, null, PagamentoEnum.PAGAR, "Pagamento pendente", 150.00, null));
-            pagamentos.add(new PagamentosModel(idFuncionario, null, null, PagamentoEnum.PAGAR, "Pagamento pendente", 150.00, null));
-            Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Order.asc("data")));
-            when(pagamentosRepository.findAll(any(Specification.class), eq(pageable))).thenReturn(new PageImpl<>(pagamentos));
-            ResponseEntity<Page<PagamentosModel>> responseEntity = listarPagamentosService.listarPagamentos(null, idFuncionario, null, PagamentoEnum.PAGAR, 0);
-            assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    @Test
+    public void testarListaPagamentosSucesso() {
+        UUID idFuncionario = UUID.fromString("5776b4fa-f29d-46b1-a4b7-caa0fb230ac5");
+        String statusPagamento = "PAGAR";
+        ListarPagamentosRequestDto request = new ListarPagamentosRequestDto(null, null, null, statusPagamento, 0);
+        request.setIdFuncionario(idFuncionario);
+        request.setPagina(0);
 
-        }
+        List<PagamentosModel> pagamentos = new ArrayList<>();
+        pagamentos.add(new PagamentosModel(idFuncionario, null, null, PagamentoEnum.PAGAR, "Pagamento pendente", 150.00, 0));
+        pagamentos.add(new PagamentosModel(idFuncionario, null, null, PagamentoEnum.PAGAR, "pendente", 150.00, 0));
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Order.asc("data")));
+        when(pagamentosRepository.findAll(any(Specification.class), eq(pageable))).thenReturn(new PageImpl<>(pagamentos));
+
+        ResponseEntity responseEntity = listarPagamentosService.listarPagamentos(request);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
 }
-

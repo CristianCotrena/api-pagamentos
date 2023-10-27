@@ -1,13 +1,12 @@
 package com.api.pagamentos.dtos;
 
-import com.api.pagamentos.service.v1.ListarPagamentosService;
 import java.util.List;
-public class paginamentoListaResponseDto {
+public class PaginamentoListaResponseDto {
     private List<ListarPagamentosResponseDto> resultados;
     private int paginaAtual;
     private int totalPaginas;
 
-    public paginamentoListaResponseDto(List<ListarPagamentosResponseDto> resultados, int paginaAtual, int totalPaginas) {
+    public PaginamentoListaResponseDto(List<ListarPagamentosResponseDto> resultados, int paginaAtual, int totalPaginas) {
         this.resultados = resultados;
         this.paginaAtual = paginaAtual;
         this.totalPaginas = totalPaginas;

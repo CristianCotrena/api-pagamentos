@@ -1,17 +1,21 @@
 package com.api.pagamentos.service.v1;
 
+import com.api.pagamentos.base.dto.BaseErrorDto;
+import com.api.pagamentos.builder.ResponseErrorBuilder;
+import com.api.pagamentos.builder.ResponseSucessBuilder;
+import com.api.pagamentos.dtos.ListarPagamentosRequestDto;
 import com.api.pagamentos.dtos.ListarPagamentosResponseDto;
-import com.api.pagamentos.entity.model.PagamentoEnum;
 import com.api.pagamentos.entity.model.PagamentosModel;
 import com.api.pagamentos.repository.PagamentosRepository;
-import com.api.pagamentos.dtos.paginamentoListaResponseDto;
+import com.api.pagamentos.dtos.PaginamentoListaResponseDto;
+import com.api.pagamentos.validation.ListarPagamentosValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.UUID;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,18 +29,12 @@ public class ListarPagamentosService {
         this.pagamentoRepository = pagamentoRepository;
     }
 
-    public ResponseEntity listarPagamentos(
-            UUID idCliente,
-            UUID idFuncionario,
-            UUID idFornecedor,
-            PagamentoEnum statusPagamento,
-            int pagina) {
-
-
-        Page<PagamentosModel> pagamentos = filtrarPagamentos(idCliente, idFuncionario, idFornecedor, statusPagamento, pagina);
-        if (idCliente == null && idFuncionario == null && idFornecedor == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity listarPagamentos(ListarPagamentosRequestDto request) {
+        List<BaseErrorDto> errors = new ListarPagamentosValidation().validate(request);
+        if(errors.size() > 0){
+            return new ResponseErrorBuilder(HttpStatus.BAD_REQUEST, errors).get();
         }
+        Page<PagamentosModel> pagamentos = filtrarPagamentos(request);
 
         List<ListarPagamentosResponseDto> pagamentoResponseList = pagamentos.getContent().stream()
                 .map(pagamento -> new ListarPagamentosResponseDto(
@@ -49,31 +47,31 @@ public class ListarPagamentosService {
                         pagamento.getData()
                 )).collect(Collectors.toList());
 
-        paginamentoListaResponseDto paginaListagemDto = new paginamentoListaResponseDto(pagamentoResponseList, pagina, pagamentos.getTotalPages());
-        return new ResponseEntity<>(paginaListagemDto, HttpStatus.OK);
+        PaginamentoListaResponseDto paginaListagemDto = new PaginamentoListaResponseDto(pagamentoResponseList, request.getPagina(), pagamentos.getTotalPages());
+        return new ResponseSucessBuilder<PaginamentoListaResponseDto>(HttpStatus.OK,paginaListagemDto).get();
     }
 
-    private Page<PagamentosModel> filtrarPagamentos(UUID idCliente, UUID idFuncionario, UUID idFornecedor, PagamentoEnum statusPagamento, int pagina) {
+    private Page<PagamentosModel> filtrarPagamentos(ListarPagamentosRequestDto request) {
         Specification<PagamentosModel> specification = Specification.where(null);
 
-        if (idCliente != null) {
-            specification = specification.and((root, query, cb) -> cb.equal(root.get("idCliente"), idCliente));
+        if (request.getIdCliente()!= null) {
+            specification = specification.and((root, query, cb) -> cb.equal(root.get("idCliente"), request.getIdCliente()));
         }
 
-        if (idFuncionario != null) {
-            specification = specification.and((root, query, cb) -> cb.equal(root.get("idFuncionario"), idFuncionario));
+        if (request.getIdFuncionario() != null) {
+            specification = specification.and((root, query, cb) -> cb.equal(root.get("idFuncionario"), request.getIdFuncionario()));
         }
 
-        if (idFornecedor != null) {
-            specification = specification.and((root, query, cb) -> cb.equal(root.get("idFornecedor"), idFornecedor));
+        if (request.getIdFornecedor() != null) {
+            specification = specification.and((root, query, cb) -> cb.equal(root.get("idFornecedor"), request.getIdFornecedor()));
         }
 
-        if (statusPagamento != null) {
-            specification = specification.and((root, query, cb) -> cb.equal(root.get("statusPagamento"), statusPagamento));
+        if (request.getStatusPagamento() != null) {
+            specification = specification.and((root, query, cb) -> cb.equal(root.get("statusPagamento"), request.getStatusPagamento()));
         }
 
         int pageSize = 10;
-        Pageable pageable = PageRequest.of(pagina, pageSize, Sort.by(Sort.Order.asc("data")));
+        Pageable pageable = PageRequest.of(request.getPagina(), pageSize, Sort.by(Sort.Order.asc("data")));
 
         return pagamentoRepository.findAll(specification, pageable);
     }

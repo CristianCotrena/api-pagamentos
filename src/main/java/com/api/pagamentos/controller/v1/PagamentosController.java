@@ -1,6 +1,7 @@
 package com.api.pagamentos.controller.v1;
 
 import com.api.pagamentos.base.dto.BaseDto;
+import com.api.pagamentos.dtos.ListarPagamentosRequestDto;
 import com.api.pagamentos.dtos.ListarPagamentosResponseDto;
 import com.api.pagamentos.entity.model.PagamentoEnum;
 import com.api.pagamentos.repository.PagamentosRepository;
@@ -65,16 +66,28 @@ public class PagamentosController {
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);
     }
-
+    @Operation(
+            summary = "Listar pagamentos",
+            description = "Lista todos pagamentos, por id",
+            method = "GET"
+    )
+    @ApiResponse(
+            responseCode = "201",
+            description = "Lista feita com sucesso")
+    @ApiResponse(
+            responseCode = "400",
+            description = "Erro de requisitos")
+    @ApiResponse(
+            responseCode = "500",
+            description = "Erro interno")
     @GetMapping("/v1/pagamentos")
     public ResponseEntity listarPagamentos(
             @RequestParam(required = false) UUID idCliente,
             @RequestParam(required = false) UUID idFuncionario,
             @RequestParam(required = false) UUID idFornecedor,
-            @RequestParam(required = false) PagamentoEnum statusPagamento,
+            @RequestParam(required = false) String statusPagamento,
             @RequestParam(required = false, defaultValue = "1") int page) {
-        ListarPagamentosService listarPagamentosService = new ListarPagamentosService(pagamentoRepository);
-        return listarPagamentosService.listarPagamentos(idCliente, idFuncionario, idFornecedor, statusPagamento, page);
+        return listarPagamentosService.listarPagamentos(new ListarPagamentosRequestDto(idCliente, idFuncionario, idFornecedor, statusPagamento, page));
     }
-    }
+}
 
