@@ -110,5 +110,6 @@ CRUD :
 
 -  Método `POST`
 -  Método `GET(BUSCAR)`
+-  Método `GET(Listar os pagamentos, usando um dos 3 ids e o status de pagamento como filtro)`
 
 ---
