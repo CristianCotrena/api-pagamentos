@@ -110,5 +110,6 @@ CRUD :
 
 -  Método `POST`
 -  Método `GET(BUSCAR)`
+-  Método `Delete(Inativa status)`
 
 ---
