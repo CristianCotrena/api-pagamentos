@@ -59,7 +59,7 @@ public class PagamentosServiceTest {
 
     @DisplayName("02 - Erro ao cadastrar id Cliente existente")
     @Test
-    public void erroAoCadastrarIdClienteExistente() {
+        public void erroAoCadastrarIdClienteExistente() {
         var request = PagamentosRequestDtoBuilder.build();
 
         request.setIdCliente(randomUUID());

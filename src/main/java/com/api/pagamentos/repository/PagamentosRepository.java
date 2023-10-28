@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,4 +22,7 @@ public interface PagamentosRepository extends JpaRepository<PagamentosModel, UUI
     Optional<Boolean> existsByData(ZonedDateTime data);
 
     Optional<Boolean> existsByStatus(Integer status);
+
+    List<PagamentosModel> findByStatus(int i);
+    Optional<PagamentosModel> findByid(java.util.UUID id);
 }
