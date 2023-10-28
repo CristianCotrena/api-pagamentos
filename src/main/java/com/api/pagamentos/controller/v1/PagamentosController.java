@@ -57,6 +57,7 @@ public class PagamentosController {
     }
     @Autowired
     private DeletarPagamentosService deletarPagamentosService;
+    //delete
     @DeleteMapping("/inativar/{id}")
     @Operation(summary = "Inativar pagamento", method = "DELETE")
     @ApiResponses(value = {
