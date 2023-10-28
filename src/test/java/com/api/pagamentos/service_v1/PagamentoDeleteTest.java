@@ -31,34 +31,24 @@ public class PagamentoDeleteTest {
 
     @Before
     public void setup() {
-        // Inicialize o Mockito
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void testInativarPagamentoExistente() {
-        UUID id = UUID.randomUUID(); // Gere um UUID aleatório
-        PagamentosModel clienteExistente = new PagamentosModel(); // Crie um cliente existente
-
-        // Simule o comportamento do repositório
+        UUID id = UUID.randomUUID();
+        PagamentosModel clienteExistente = new PagamentosModel();
         when(pagamentoRepository.findByid(id)).thenReturn(Optional.of(clienteExistente));
-
         ResponseEntity<? extends BaseDto<? extends Object>> result = deletarPagamentosService.inativarPagamento(id);
-
-        // Verifique se o resultado é um sucesso (HttpStatus.OK)
         assertEquals(HttpStatus.OK, result.getStatusCode());
     }
 
     @Test
     public void testInativarPagamentoNaoExistente() {
-        UUID id = UUID.randomUUID(); // Gere um UUID aleatório
-
-        // Simule o comportamento do repositório
+        UUID id = UUID.randomUUID();
         when(pagamentoRepository.findByid(id)).thenReturn(Optional.empty());
 
         ResponseEntity<? extends BaseDto<? extends Object>> result = deletarPagamentosService.inativarPagamento(id);
-
-        // Verifique se o resultado é um erro (HttpStatus.NOT_FOUND)
         assertEquals(HttpStatus.NOT_FOUND, result.getStatusCode());
     }
 }

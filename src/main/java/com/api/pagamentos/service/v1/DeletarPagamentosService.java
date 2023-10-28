@@ -29,14 +29,12 @@ public class DeletarPagamentosService {
     public ResponseEntity<? extends BaseDto<? extends Object>> inativarPagamento(UUID id) {
         Optional<PagamentosModel> encontrarCliente = pagamentoRepository.findByid(id);
         if (encontrarCliente.isPresent()) {
-            // Atualize o status para 0 (inativo)
             PagamentosModel cliente = encontrarCliente.get();
             cliente.setStatus(0);
             pagamentoRepository.save(cliente);
 
             return new ResponseSucessBuilder<String>(HttpStatus.OK, "Cliente marcado como inativo com sucesso.").get();
         } else {
-            // Trata o caso em que o cliente com o ID fornecido não existe
             List<BaseErrorDto> errors = new ArrayList<>();
             errors.add(new BaseErrorDto("Cliente", "Cliente não encontrado."));
             ResponseErrorBuilder resultado = new ResponseErrorBuilder(HttpStatus.NOT_FOUND, errors);
