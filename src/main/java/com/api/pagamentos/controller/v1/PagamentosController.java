@@ -1,17 +1,16 @@
 package com.api.pagamentos.controller.v1;
 
 import com.api.pagamentos.base.dto.BaseDto;
-import com.api.pagamentos.dtos.PagamentosRequestDto;
-import com.api.pagamentos.service.v1.PagamentosService;
+import com.api.pagamentos.dtos.CadastrarPagamentoRequestDto;
+import com.api.pagamentos.entity.model.PagamentosModel;
+import com.api.pagamentos.service.v1.CadastrarPagamentosService;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/pagamentos")
@@ -21,7 +20,7 @@ import java.util.UUID;
 )
 public class PagamentosController {
     @Autowired
-    private PagamentosService pagamentosService;
+    private CadastrarPagamentosService cadastrarPagamentosService;
 
     @Operation(
             summary = "Criar pagamentos",
@@ -39,9 +38,12 @@ public class PagamentosController {
             description = "Erro interno")
 
     @PostMapping("/cadastrar")
-    public BaseDto cadastrarPagamentos(@RequestBody PagamentosRequestDto pagamentosRequestDto) {
-        return pagamentosService.cadastrarPagamentos(pagamentosRequestDto);
+    public ResponseEntity<BaseDto<PagamentosModel>> cadastrarPagamentos(@RequestBody CadastrarPagamentoRequestDto cadastrarPagamentoRequestDto) {
+        ResponseEntity<BaseDto<PagamentosModel>> resultado = cadastrarPagamentosService.cadastrarPagamentos(cadastrarPagamentoRequestDto);
+        return resultado;
     }
+
+    /**
     @Operation(summary = "Busca registro de um pagamento ", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Pagamento não encontrado"),
@@ -52,5 +54,6 @@ public class PagamentosController {
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);
     }
+    **/
 }
 

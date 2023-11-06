@@ -72,4 +72,10 @@ public class DateUtils {
         Period diferencaEntreDatas = Period.between(dataDeNascimento, dataAtual);
         return diferencaEntreDatas.getYears();
     }
+
+    public boolean dataMenorQueAtual(String data) {
+        LocalDate dataPagamento = LocalDate.parse(data);
+        LocalDate dataAtual = LocalDate.now();
+        return !dataPagamento.isAfter(dataAtual);
+    }
 }

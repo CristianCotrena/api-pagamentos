@@ -18,7 +18,5 @@ public interface PagamentosRepository extends JpaRepository<PagamentosModel, UUI
 
     Optional<Boolean> existsByValor(double valor);
 
-    Optional<Boolean> existsByData(ZonedDateTime data);
-
     Optional<Boolean> existsByStatus(Integer status);
 }
