@@ -43,14 +43,4 @@ public class CadastrarPagamentosService {
         );
         return cadastradoComSucesso.get();
     }
-
-    /**
-    public ResponseEntity buscarPagamento(UUID id){
-        Optional<PagamentosModel> encontrarPorId = pagamentosRepository.findById(id);
-        if (encontrarPorId.isEmpty()){
-            return new ResponseErrorBuilder(HttpStatus.NOT_FOUND,MensagemDeErro.NOT_FOUND).get();
-        }
-        return new ResponseSucessBuilder(HttpStatus.OK,encontrarPorId).get();
-    }
-     **/
 }

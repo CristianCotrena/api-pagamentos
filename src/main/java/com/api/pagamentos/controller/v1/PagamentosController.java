@@ -3,6 +3,7 @@ package com.api.pagamentos.controller.v1;
 import com.api.pagamentos.base.dto.BaseDto;
 import com.api.pagamentos.dtos.CadastrarPagamentoRequestDto;
 import com.api.pagamentos.entity.model.PagamentosModel;
+import com.api.pagamentos.service.v1.BuscarPagamentoService;
 import com.api.pagamentos.service.v1.CadastrarPagamentosService;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,8 +20,17 @@ import org.springframework.web.bind.annotation.*;
         description = "Microserviço para API Pagamentos Forma NT - Academia"
 )
 public class PagamentosController {
+
     @Autowired
     private CadastrarPagamentosService cadastrarPagamentosService;
+    private BuscarPagamentoService buscarPagamentoService;
+
+    public PagamentosController(
+            CadastrarPagamentosService cadastrarPagamentosService,
+            BuscarPagamentoService buscarPagamentoService) {
+        this.cadastrarPagamentosService = cadastrarPagamentosService;
+        this.buscarPagamentoService = buscarPagamentoService;
+    }
 
     @Operation(
             summary = "Criar pagamentos",
@@ -50,10 +60,11 @@ public class PagamentosController {
             @ApiResponse(responseCode = "200", description = "Pagamento encontrado"),
             @ApiResponse(responseCode = "500", description = "Erro interno"),
     })
+     **/
     @GetMapping("/{id}")
-    public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
-        return pagamentosService.buscarPagamento(id);
+    public ResponseEntity<BaseDto<PagamentosModel>> buscarUmPagamento(@PathVariable(value = "id") String id) {
+        ResponseEntity<BaseDto<PagamentosModel>> resultado = buscarPagamentoService.buscarPagamento(id);
+        return resultado;
     }
-    **/
 }
 
