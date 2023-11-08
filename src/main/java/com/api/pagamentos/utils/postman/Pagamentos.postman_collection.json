@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3c1d796e-cbb5-447a-a8fa-8896ae735e25",
+		"_postman_id": "4bad7140-647c-4b38-af20-6c884790abce",
 		"name": "Pagamentos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30032860"
+		"_exporter_id": "29857348"
 	},
 	"item": [
 		{
@@ -233,6 +233,35 @@
 								"56175c4d-dc1f-4f0d-813f-9ad591810e44"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listar",
+			"item": [
+				{
+					"name": "Listar(Válido)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Listar(ID invalido)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Listar(status pagamento invalido)",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

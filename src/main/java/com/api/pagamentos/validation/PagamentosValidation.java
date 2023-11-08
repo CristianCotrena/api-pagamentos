@@ -14,7 +14,7 @@ public class PagamentosValidation {
         return !erros.isEmpty() ? erros : validateCamposInvalidos(pagamentosRequestDto, erros);
     }
 
-    public List<BaseErrorDto> validateCamposRequeridos(PagamentosRequestDto pagamentosRequestDto) {
+        private List<BaseErrorDto> validateCamposRequeridos(PagamentosRequestDto pagamentosRequestDto) {
         List<BaseErrorDto> erros = new ArrayList<>();
 
         //Todo: Campos obrigatórios
@@ -41,7 +41,7 @@ public class PagamentosValidation {
     }
 
     //Todo: Campos inválidos
-    public List<BaseErrorDto> validateCamposInvalidos(PagamentosRequestDto pagamentosRequestDto, List<BaseErrorDto> erros) {
+    private List<BaseErrorDto> validateCamposInvalidos(PagamentosRequestDto pagamentosRequestDto, List<BaseErrorDto> erros) {
 
         if (pagamentosRequestDto.getData().isBefore(ZonedDateTime.now())) {
             erros.add(new BaseErrorDto("data", MensagemDeErro.INVALID_FIELD));
