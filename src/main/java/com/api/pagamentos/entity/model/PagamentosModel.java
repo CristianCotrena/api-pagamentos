@@ -29,6 +29,7 @@ import java.util.UUID;
         @Column(nullable = false, columnDefinition = "int default 1")
         private int status;
 
+<<<<<<< HEAD
         public PagamentosModel() {
         }
 
@@ -51,6 +52,9 @@ import java.util.UUID;
             this.valor = valor;
             this.data = data;
             this.status = status;
+=======
+        public PagamentosModel(UUID idFuncionario, Object o, Object o1, PagamentoEnum pagamentoEnum, String pagamentoPendente, double v, Object o2) {
+>>>>>>> fa02f2c4479a222690dab2c48bb329428e76edc6
         }
 
         public UUID getId() {
