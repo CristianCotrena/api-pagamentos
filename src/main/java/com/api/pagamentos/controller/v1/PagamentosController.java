@@ -79,7 +79,7 @@ public class PagamentosController {
     @ApiResponse(
             responseCode = "500",
             description = "Erro interno")
-    @GetMapping("/v1/pagamentos")
+    @GetMapping
     public ResponseEntity listarPagamentos(
             @RequestParam(required = false) UUID idCliente,
             @RequestParam(required = false) UUID idFuncionario,

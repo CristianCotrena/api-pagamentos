@@ -1,7 +1,10 @@
 package com.api.pagamentos.entity.model;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.UUID;
 
     @Entity
@@ -25,7 +28,8 @@ import java.util.UUID;
         @Column(nullable = false)
         private double valor;
         @Column(nullable = false)
-        private String data;
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        private Date data;
         @Column(nullable = false, columnDefinition = "int default 1")
         private int status;
 
@@ -40,7 +44,7 @@ import java.util.UUID;
                 PagamentoEnum statusPagamento,
                 String descricao,
                 double valor,
-                String data,
+                Date data,
                 int status) {
             this.id = id;
             this.idCliente = idCliente;
@@ -109,11 +113,11 @@ import java.util.UUID;
             this.valor = valor;
         }
 
-        public String getData() {
+        public Date getData() {
             return data;
         }
 
-        public void setData(String data) {
+        public void setData(Date data) {
             this.data = data;
         }
 
