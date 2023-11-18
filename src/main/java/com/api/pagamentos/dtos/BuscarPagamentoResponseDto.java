@@ -1,5 +1,6 @@
 package com.api.pagamentos.dtos;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class BuscarPagamentoResponseDto {
@@ -11,7 +12,7 @@ public class BuscarPagamentoResponseDto {
     private String statusPagamento;
     private String descricao;
     private double valor;
-    private String data;
+    private Date data;
 
     public BuscarPagamentoResponseDto() {
     }
@@ -24,7 +25,7 @@ public class BuscarPagamentoResponseDto {
             String statusPagamento,
             String descricao,
             double valor,
-            String data) {
+            Date data) {
         this.id = id;
         this.idCliente = idCliente;
         this.idFornecedor = idFornecedor;
@@ -91,11 +92,11 @@ public class BuscarPagamentoResponseDto {
         this.valor = valor;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 }

@@ -4,6 +4,7 @@ import com.api.pagamentos.entity.model.PagamentoEnum;
 import com.api.pagamentos.entity.model.PagamentosModel;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 public class PagamentosModelBuilder {
@@ -17,7 +18,10 @@ public class PagamentosModelBuilder {
         resultado.setStatusPagamento(PagamentoEnum.valueOf("PAGAR"));
         resultado.setDescricao("Pagamento pendente");
         resultado.setValor(150.00);
-        resultado.setData("2023-10-09");
+
+        Date data = new Date(2023 - 1900, 9 - 1, 9);
+        resultado.setData(data);
+
         resultado.setStatus(1);
 
         return resultado;
@@ -32,7 +36,10 @@ public class PagamentosModelBuilder {
         resultado.setStatusPagamento(PagamentoEnum.valueOf("PAGAR"));
         resultado.setDescricao("Pagamento pendente");
         resultado.setValor(150.00);
-        resultado.setData("2023-10-09");
+
+        Date data = new Date(2023 - 1900, 9 - 1, 9);
+        resultado.setData(data);
+
         resultado.setStatus(1);
 
         return resultado;
@@ -47,7 +54,10 @@ public class PagamentosModelBuilder {
         resultado.setStatusPagamento(PagamentoEnum.valueOf("PAGAR"));
         resultado.setDescricao("Pagamento pendente");
         resultado.setValor(150.00);
-        resultado.setData("2023-10-09");
+
+        Date data = new Date(2023 - 1900, 9 - 1, 9);
+        resultado.setData(data);
+
         resultado.setStatus(1);
 
         return resultado;

@@ -6,6 +6,8 @@ import com.api.pagamentos.entity.model.PagamentoEnum;
 import com.api.pagamentos.entity.model.PagamentosModel;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,7 +27,15 @@ public class PagamentosTransformer {
 
         pagamentosModel.setStatusPagamento(PagamentoEnum.statusEscolhido(dto.getStatusPagamento()));
         pagamentosModel.setDescricao(dto.getDescricao());
-        pagamentosModel.setData(dto.getData());
+
+        String formatoDaData = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatoDaData);
+        try {
+            pagamentosModel.setData(simpleDateFormat.parse(dto.getData()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         pagamentosModel.setValor(Double.parseDouble(dto.getValor()));
         pagamentosModel.setStatus(1);
 

@@ -1,7 +1,9 @@
 package com.api.pagamentos.entity.model;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.UUID;
 
     @Entity
@@ -25,11 +27,11 @@ import java.util.UUID;
         @Column(nullable = false)
         private double valor;
         @Column(nullable = false)
-        private String data;
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        private Date data;
         @Column(nullable = false, columnDefinition = "int default 1")
         private int status;
 
-<<<<<<< HEAD
         public PagamentosModel() {
         }
 
@@ -41,7 +43,7 @@ import java.util.UUID;
                 PagamentoEnum statusPagamento,
                 String descricao,
                 double valor,
-                String data,
+                Date data,
                 int status) {
             this.id = id;
             this.idCliente = idCliente;
@@ -52,9 +54,6 @@ import java.util.UUID;
             this.valor = valor;
             this.data = data;
             this.status = status;
-=======
-        public PagamentosModel(UUID idFuncionario, Object o, Object o1, PagamentoEnum pagamentoEnum, String pagamentoPendente, double v, Object o2) {
->>>>>>> fa02f2c4479a222690dab2c48bb329428e76edc6
         }
 
         public UUID getId() {
@@ -113,11 +112,11 @@ import java.util.UUID;
             this.valor = valor;
         }
 
-        public String getData() {
+        public Date getData() {
             return data;
         }
 
-        public void setData(String data) {
+        public void setData(Date data) {
             this.data = data;
         }
 
@@ -128,4 +127,4 @@ import java.util.UUID;
         public void setStatus(int status) {
             this.status = status;
         }
-    }
+}
