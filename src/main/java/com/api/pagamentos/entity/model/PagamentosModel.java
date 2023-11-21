@@ -1,21 +1,25 @@
 package com.api.pagamentos.entity.model;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.UUID;
 
     @Entity
     @Table(name = "pagamentos")
     public class PagamentosModel implements Serializable {
+
         private static final long serialVersionUID = 1L;
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private UUID id;
-        @Column(unique = true)
+        @Column
         private UUID idCliente;
-        @Column(unique = true)
+        @Column
         private UUID idFuncionario;
-        @Column(unique = true)
+        @Column
         private UUID idFornecedor;
         @Column(nullable = false)
         private PagamentoEnum statusPagamento;
@@ -24,11 +28,33 @@ import java.util.UUID;
         @Column(nullable = false)
         private double valor;
         @Column(nullable = false)
-        private ZonedDateTime data;
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        private Date data;
         @Column(nullable = false, columnDefinition = "int default 1")
         private int status;
 
-        public PagamentosModel(UUID idFuncionario, Object o, Object o1, PagamentoEnum pagamentoEnum, String pagamentoPendente, double v, Object o2) {
+        public PagamentosModel() {
+        }
+
+        public PagamentosModel(
+                UUID id,
+                UUID idCliente,
+                UUID idFuncionario,
+                UUID idFornecedor,
+                PagamentoEnum statusPagamento,
+                String descricao,
+                double valor,
+                Date data,
+                int status) {
+            this.id = id;
+            this.idCliente = idCliente;
+            this.idFuncionario = idFuncionario;
+            this.idFornecedor = idFornecedor;
+            this.statusPagamento = statusPagamento;
+            this.descricao = descricao;
+            this.valor = valor;
+            this.data = data;
+            this.status = status;
         }
 
         public UUID getId() {
@@ -87,11 +113,11 @@ import java.util.UUID;
             this.valor = valor;
         }
 
-        public ZonedDateTime getData() {
+        public Date getData() {
             return data;
         }
 
-        public void setData(ZonedDateTime data) {
+        public void setData(Date data) {
             this.data = data;
         }
 
@@ -101,19 +127,5 @@ import java.util.UUID;
 
         public void setStatus(int status) {
             this.status = status;
-        }
-
-        public PagamentosModel() {
-            this.id = id;
-            this.idCliente = idCliente;
-            this.idFuncionario = idFuncionario;
-            this.idFornecedor = idFornecedor;
-            this.statusPagamento = statusPagamento;
-            this.descricao = descricao;
-            this.valor = valor;
-            this.data = data;
-            this.status = status;
-
-
         }
     }

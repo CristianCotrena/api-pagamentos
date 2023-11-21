@@ -3,7 +3,6 @@ import com.api.pagamentos.base.dto.BaseErrorDto;
 import com.api.pagamentos.constants.MensagemDeErro;
 import com.api.pagamentos.dtos.ListarPagamentosRequestDto;
 import com.api.pagamentos.dtos.ListarPagamentosResponseDto;
-import com.api.pagamentos.dtos.PagamentosRequestDto;
 import com.api.pagamentos.entity.model.PagamentoEnum;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;

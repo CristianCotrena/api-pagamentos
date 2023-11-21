@@ -2,6 +2,7 @@ package com.api.pagamentos.dtos;
 import com.api.pagamentos.entity.model.PagamentoEnum;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 import java.io.Serializable;
@@ -13,9 +14,9 @@ public class ListarPagamentosResponseDto implements Serializable {
     private PagamentoEnum statusPagamento;
     private String descricao;
     private double valor;
-    private ZonedDateTime data;
+    private Date data;
 
-    public ListarPagamentosResponseDto(UUID idCliente,UUID idFuncionario, UUID idFornecedor, PagamentoEnum statusPagamento,String descricao, double valor, ZonedDateTime data){
+    public ListarPagamentosResponseDto(UUID idCliente,UUID idFuncionario, UUID idFornecedor, PagamentoEnum statusPagamento,String descricao, double valor, Date data){
         this.idCliente = idCliente;
         this.idFuncionario = idFuncionario;
         this.idFornecedor = idFornecedor;
@@ -84,12 +85,11 @@ public class ListarPagamentosResponseDto implements Serializable {
         this.valor = valor;
     }
 
-    public ZonedDateTime getData() {
-
+    public Date getData() {
         return data;
     }
 
-    public void setData(ZonedDateTime data) {
+    public void setData(Date data) {
         this.data = data;
     }
 }

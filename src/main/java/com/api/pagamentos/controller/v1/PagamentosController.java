@@ -1,22 +1,18 @@
 package com.api.pagamentos.controller.v1;
 
 import com.api.pagamentos.base.dto.BaseDto;
+import com.api.pagamentos.dtos.CadastrarPagamentoRequestDto;
+import com.api.pagamentos.entity.model.PagamentosModel;
+import com.api.pagamentos.service.v1.CadastrarPagamentosService;
 import com.api.pagamentos.dtos.ListarPagamentosRequestDto;
-import com.api.pagamentos.dtos.ListarPagamentosResponseDto;
-import com.api.pagamentos.entity.model.PagamentoEnum;
-import com.api.pagamentos.repository.PagamentosRepository;
 import com.api.pagamentos.service.v1.ListarPagamentosService;
-import com.api.pagamentos.dtos.PagamentosRequestDto;
-import com.api.pagamentos.service.v1.PagamentosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,13 +23,12 @@ import java.util.UUID;
 )
 public class PagamentosController {
     private final ListarPagamentosService listarPagamentosService;
-    private final PagamentosRepository pagamentoRepository;
+    private final CadastrarPagamentosService cadastrarPagamentosService;
+    
     @Autowired
-    private PagamentosService pagamentosService;
-    @Autowired
-    public PagamentosController(ListarPagamentosService listarPagamentosService, PagamentosRepository pagamentoRepository) {
+    public PagamentosController(ListarPagamentosService listarPagamentosService, CadastrarPagamentosService cadastrarPagamentosService) {
         this.listarPagamentosService = listarPagamentosService;
-        this.pagamentoRepository = pagamentoRepository;
+        this.cadastrarPagamentosService = cadastrarPagamentosService;
     }
 
     @Operation(
@@ -53,9 +48,12 @@ public class PagamentosController {
 
 
     @PostMapping("/cadastrar")
-    public BaseDto cadastrarPagamentos(@RequestBody PagamentosRequestDto pagamentosRequestDto) {
-        return pagamentosService.cadastrarPagamentos(pagamentosRequestDto);
+    public ResponseEntity<BaseDto<PagamentosModel>> cadastrarPagamentos(@RequestBody CadastrarPagamentoRequestDto cadastrarPagamentoRequestDto) {
+        ResponseEntity<BaseDto<PagamentosModel>> resultado = cadastrarPagamentosService.cadastrarPagamentos(cadastrarPagamentoRequestDto);
+        return resultado;
     }
+
+    /**
     @Operation(summary = "Busca registro de um pagamento ", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Pagamento não encontrado"),
@@ -66,6 +64,7 @@ public class PagamentosController {
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);
     }
+    **/
     @Operation(
             summary = "Listar pagamentos",
             description = "Lista todos pagamentos, por id",
@@ -80,7 +79,7 @@ public class PagamentosController {
     @ApiResponse(
             responseCode = "500",
             description = "Erro interno")
-    @GetMapping("/v1/pagamentos")
+    @GetMapping
     public ResponseEntity listarPagamentos(
             @RequestParam(required = false) UUID idCliente,
             @RequestParam(required = false) UUID idFuncionario,

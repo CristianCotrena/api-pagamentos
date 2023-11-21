@@ -1,243 +1,11 @@
 {
 	"info": {
-		"_postman_id": "4bad7140-647c-4b38-af20-6c884790abce",
+		"_postman_id": "c9f55124-8504-4836-922e-40a8d5f8312b",
 		"name": "Pagamentos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29857348"
+		"_exporter_id": "25298901"
 	},
 	"item": [
-		{
-			"name": "Post",
-			"item": [
-				{
-					"name": "Cadastro válido",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idFuncionario\":\"dc8db07d-6255-4014-9638-da76d1a95d98\",\r\n    \"statusPagamento\":\"PAGAR\",\r\n    \"descricao\":\"pendente\",\r\n    \"valor\":150.00,\r\n    \"data\":\"2023-12-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "(inválido) valor",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idFuncionario\":\"1e10c1e4-9a6b-43e1-9f12-7136336e8653\",\r\n    \"statusPagamento\":\"PAGAR\",\r\n    \"descricao\":\"pago\",\r\n    \"valor\": \"\",\r\n    \"data\":\"2023-12-14T01:30:01.764+00:00\",\r\n    \"status\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "(inválido) data",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idFuncionario\":\"2e10c1e5-9a6b-43e1-9f12-7136336e8657\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pago\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"2023-10-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "(obrigatório) id",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idFuncionario\":\"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pago\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"2023-12-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "(obrigatório) descricao",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n     \"idFuncionario\":\"2e10c1e5-9a6b-43e1-9f12-7136336e8657\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"2023-12-10T16:37:45.082+00:00\",\r\n    \"status\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "(obrigatório) data",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idFuncionario\":\"2e10c1e5-9a6b-43e1-9f12-7136336e8657\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": 150.00,\r\n    \"data\":\"\",\r\n    \"status\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Buscar",
-			"item": [
-				{
-					"name": "Buscar(Válido)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/415e42c7-9567-4665-aebd-e19cb564b772",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"415e42c7-9567-4665-aebd-e19cb564b772"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar(Inválido)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/56175c4d-dc1f-4f0d-813f-9ad591810e44",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"56175c4d-dc1f-4f0d-813f-9ad591810e44"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
 		{
 			"name": "Listar",
 			"item": [
@@ -245,7 +13,10 @@
 					"name": "Listar(Válido)",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -253,7 +24,10 @@
 					"name": "Listar(ID invalido)",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -261,7 +35,705 @@
 					"name": "Listar(status pagamento invalido)",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastrar",
+			"item": [
+				{
+					"name": "01 - SUCESSO Cadastrar Pagamento ID Cliente Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"9d769dc1-db1b-4ca1-aa6b-10c9d8de0ff4\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"150\",\r\n    \"data\": \"2023-11-05\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02 - SUCESSO Cadastrar Pagamento ID Fornecedor Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"\",\r\n    \"idFornecedor\": \"02a4def3-7602-4805-8e17-8ab25e2e5835\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03 - SUCESSO Cadastrar Pagamento ID Funcionario Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"1e2ec7d8-8bf2-4459-9966-0ca673e27b5b\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04 - SUCESSO Cadastrar Pagamento Valor RECEBIDO COM VIRGULA Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"18,55\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05 - FRACASSO Cadastrar Pagamento Todos os IDs Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"bd27695d-86d4-46cc-a537-4ab02d62444f\",\r\n    \"idFornecedor\": \"792ddd9b-74e1-43fb-bdde-522b05d4a585\",\r\n    \"idFuncionario\": \"1e2ec7d8-8bf2-4459-9966-0ca673e27b5b\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06 - FRACASSO Cadastrar Pagamento IDs Cliente e Fornecedor Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"bd27695d-86d4-46cc-a537-4ab02d62444f\",\r\n    \"idFornecedor\": \"792ddd9b-74e1-43fb-bdde-522b05d4a585\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07 - FRACASSO Cadastrar Pagamento IDs Cliente e Funcionario Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"bd27695d-86d4-46cc-a537-4ab02d62444f\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"792ddd9b-74e1-43fb-bdde-522b05d4a585\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "08 - FRACASSO Cadastrar Pagamento IDs Fornecedor e Funcionario Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"\",\r\n    \"idFornecedor\": \"792ddd9b-74e1-43fb-bdde-522b05d4a585\",\r\n    \"idFuncionario\": \"bd27695d-86d4-46cc-a537-4ab02d62444f\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "09 - FRACASSO Cadastrar Pagamento NENHUM ID Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10 - FRACASSO Cadastrar Pagamento IDs NULOS Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"statusPagamento\": \"RECEBER\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11 - FRACASSO Cadastrar Pagamento Status Incorreto Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"testando\",\r\n    \"descricao\": \"testando\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-09-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12 - FRACASSO Cadastrar Pagamento Status APAGADO Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13 - FRACASSO Cadastrar Pagamento Status NULO Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14 - FRACASSO Cadastrar Pagamento Descricao APAGADA Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15 - FRACASSO Cadastrar Pagamento Descricao NULA Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"valor\": \"300.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16 - FRACASSO Cadastrar Pagamento Valor Zero Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"0.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17 - FRACASSO Cadastrar Pagamento Valor Negativo Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"-10.00\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18 - FRACASSO Cadastrar Pagamento Valor APAGADO Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19 - FRACASSO Cadastrar Pagamento Valor NULO Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"data\": \"2023-01-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20 - FRACASSO Cadastrar Pagamento Data FORA DO PADRÃO Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"18,55\",\r\n    \"data\": \"2023-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "21 - FRACASSO Cadastrar Pagamento Data VAZIA Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"18,55\",\r\n    \"data\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "22 - FRACASSO Cadastrar Pagamento Data NULA Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d-4605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"PAGAR\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"18,55\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "23 - FRACASSO Cadastrar Pagamento Varios Campos Errados Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": \"ede59fd8-d98d605-a06f-0973606636e5\",\r\n    \"idFornecedor\": \"\",\r\n    \"idFuncionario\": \"\",\r\n    \"statusPagamento\": \"teste\",\r\n    \"descricao\": \"pendente\",\r\n    \"valor\": \"18.55\",\r\n    \"data\": \"2023-1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pagamentos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pagamentos",
+								"cadastrar"
+							]
+						}
 					},
 					"response": []
 				}
