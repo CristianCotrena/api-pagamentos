@@ -128,4 +128,4 @@ import java.util.UUID;
         public void setStatus(int status) {
             this.status = status;
         }
-    }
+}

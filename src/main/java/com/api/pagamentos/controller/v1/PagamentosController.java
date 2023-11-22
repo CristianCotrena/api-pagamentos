@@ -3,11 +3,13 @@ package com.api.pagamentos.controller.v1;
 import com.api.pagamentos.base.dto.BaseDto;
 import com.api.pagamentos.dtos.CadastrarPagamentoRequestDto;
 import com.api.pagamentos.entity.model.PagamentosModel;
+import com.api.pagamentos.service.v1.BuscarPagamentoService;
 import com.api.pagamentos.service.v1.CadastrarPagamentosService;
 import com.api.pagamentos.dtos.ListarPagamentosRequestDto;
 import com.api.pagamentos.service.v1.ListarPagamentosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +24,19 @@ import java.util.UUID;
         description = "Microserviço para API Pagamentos Forma NT - Academia"
 )
 public class PagamentosController {
+
     private final ListarPagamentosService listarPagamentosService;
     private final CadastrarPagamentosService cadastrarPagamentosService;
-    
+    private final BuscarPagamentoService buscarPagamentoService;
+
     @Autowired
-    public PagamentosController(ListarPagamentosService listarPagamentosService, CadastrarPagamentosService cadastrarPagamentosService) {
+    public PagamentosController(
+            ListarPagamentosService listarPagamentosService,
+            CadastrarPagamentosService cadastrarPagamentosService,
+            BuscarPagamentoService buscarPagamentoService) {
         this.listarPagamentosService = listarPagamentosService;
         this.cadastrarPagamentosService = cadastrarPagamentosService;
+        this.buscarPagamentoService = buscarPagamentoService;
     }
 
     @Operation(
@@ -45,15 +53,12 @@ public class PagamentosController {
     @ApiResponse(
             responseCode = "500",
             description = "Erro interno")
-
-
     @PostMapping("/cadastrar")
     public ResponseEntity<BaseDto<PagamentosModel>> cadastrarPagamentos(@RequestBody CadastrarPagamentoRequestDto cadastrarPagamentoRequestDto) {
         ResponseEntity<BaseDto<PagamentosModel>> resultado = cadastrarPagamentosService.cadastrarPagamentos(cadastrarPagamentoRequestDto);
         return resultado;
     }
 
-    /**
     @Operation(summary = "Busca registro de um pagamento ", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Pagamento não encontrado"),
@@ -61,10 +66,11 @@ public class PagamentosController {
             @ApiResponse(responseCode = "500", description = "Erro interno"),
     })
     @GetMapping("/{id}")
-    public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
-        return pagamentosService.buscarPagamento(id);
+    public ResponseEntity<BaseDto<PagamentosModel>> buscarUmPagamento(@PathVariable(value = "id") String id) {
+        ResponseEntity<BaseDto<PagamentosModel>> resultado = buscarPagamentoService.buscarPagamento(id);
+        return resultado;
     }
-    **/
+    
     @Operation(
             summary = "Listar pagamentos",
             description = "Lista todos pagamentos, por id",
@@ -79,7 +85,7 @@ public class PagamentosController {
     @ApiResponse(
             responseCode = "500",
             description = "Erro interno")
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity listarPagamentos(
             @RequestParam(required = false) UUID idCliente,
             @RequestParam(required = false) UUID idFuncionario,
