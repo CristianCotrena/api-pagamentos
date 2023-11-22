@@ -70,7 +70,7 @@ public class PagamentosController {
         ResponseEntity<BaseDto<PagamentosModel>> resultado = buscarPagamentoService.buscarPagamento(id);
         return resultado;
     }
-
+    
     @Operation(
             summary = "Listar pagamentos",
             description = "Lista todos pagamentos, por id",

@@ -15,17 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/listar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"listar"
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -742,74 +732,6 @@
 								"v1",
 								"pagamentos",
 								"cadastrar"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Buscar",
-			"item": [
-				{
-					"name": "01 - SUCESSO Buscar Pagamento",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/a10918d1-71d2-4eb3-b468-459700b28adb",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"a10918d1-71d2-4eb3-b468-459700b28adb"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "02 - FRACASSO Buscar Pagamento Id Inexistente",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/1c0c9c77-aa31-49fe-a355-70810f434685",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"1c0c9c77-aa31-49fe-a355-70810f434685"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "03 - FRACASSO Buscar Pagamento Id Fora do Padrão",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/v1/pagamentos/1c0c9c77-aa39fe-a355-70810f434685",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"pagamentos",
-								"1c0c9c77-aa39fe-a355-70810f434685"
 							]
 						}
 					},
