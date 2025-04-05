@@ -52,5 +52,10 @@ public class PagamentosController {
     public ResponseEntity<BaseDto> buscarUmPagamento(@PathVariable(value = "id") UUID id) {
         return pagamentosService.buscarPagamento(id);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BaseDto> deletarUmPagamento(@PathVariable(value = "id") UUID id) {
+        return pagamentosService.deletarPagamento(id);
+    }
+
 }
 

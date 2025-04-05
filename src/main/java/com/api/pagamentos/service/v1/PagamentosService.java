@@ -10,6 +10,7 @@ import com.api.pagamentos.entity.model.PagamentosModel;
 import com.api.pagamentos.repository.PagamentosRepository;
 import com.api.pagamentos.transforme.PagamentosTransforme;
 import com.api.pagamentos.validation.PagamentosValidation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -55,5 +56,20 @@ public class PagamentosService {
             return new ResponseErrorBuilder(HttpStatus.NOT_FOUND,MensagemDeErro.NOT_FOUND).get();
         }
         return new ResponseSucessBuilder(HttpStatus.OK,encontrarPorId).get();
+    }
+
+    public ResponseEntity deletarPagamento(UUID id){
+        Optional<PagamentosModel> encontrarPorId = pagamentosRepository.findById(id);
+        if (encontrarPorId.isEmpty()){
+            return new ResponseErrorBuilder(HttpStatus.NOT_FOUND,MensagemDeErro.NOT_FOUND).get();
+        }
+
+        var pagamentoModel = new PagamentosModel();
+        BeanUtils.copyProperties(encontrarPorId.get(),pagamentoModel);
+        pagamentoModel.setStatus(0);
+        pagamentosRepository.save(pagamentoModel);
+        return new ResponseSucessBuilder(HttpStatus.OK,new ArrayList<>(),"Deletado com sucesso").get();
+
+
     }
 }
